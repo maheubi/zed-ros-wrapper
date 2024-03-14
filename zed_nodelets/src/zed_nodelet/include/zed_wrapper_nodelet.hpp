@@ -812,6 +812,7 @@ private:
   bool mObjDetElectronicsEnable = true;
   bool mObjDetFruitsEnable = true;
   bool mObjDetSportEnable = true;
+  bool mObjDetTracksEnable = true;s
 
   sl::OBJECT_DETECTION_MODEL mObjDetModel = sl::OBJECT_DETECTION_MODEL::MULTI_CLASS_BOX_MEDIUM;
   sl::OBJECT_FILTERING_MODE mObjFilterMode = sl::OBJECT_FILTERING_MODE::NMS3D;
