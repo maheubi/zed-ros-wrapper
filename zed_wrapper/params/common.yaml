@@ -80,7 +80,8 @@ sensors:
 
 object_detection:
     od_enabled:                         false                           # True to enable Object Detection [not available for ZED]
-    model:                              'MULTI_CLASS_BOX_ACCURATE'      # 'MULTI_CLASS_BOX_FAST', 'MULTI_CLASS_BOX_MEDIUM', 'MULTI_CLASS_BOX_ACCURATE', 'PERSON_HEAD_BOX_FAST', 'PERSON_HEAD_BOX_ACCURATE'
+    #Add the custom model to this line, the name has do be defined correctly! Added to the SDK!!!!!!!!!!!!
+    model:                              'CUSTOM_OBJECTS_MODEL'      # 'MULTI_CLASS_BOX_FAST', 'MULTI_CLASS_BOX_MEDIUM', 'MULTI_CLASS_BOX_ACCURATE', 'PERSON_HEAD_BOX_FAST', 'PERSON_HEAD_BOX_ACCURATE', 'CUSTOM_BOX_OBJECTS'
     max_range:                          15.                             # Maximum detection range
     allow_reduced_precision_inference:  true                            # Allow inference to run at a lower precision to improve runtime and memory usage
     prediction_timeout:                 0.5                             #  During this time [sec], the object will have OK state even if it is not detected. Set this parameter to 0 to disable SDK predictions            
@@ -92,3 +93,4 @@ object_detection:
     mc_electronics:                     true                            # Enable/disable the detection of electronic devices for 'MULTI_CLASS_BOX_X' models
     mc_fruit_vegetable:                 true                            # Enable/disable the detection of fruits and vegetables for 'MULTI_CLASS_BOX_X' models
     mc_sport:                           true                            # Enable/disable the detection of sport-related objects for 'MULTI_CLASS_BOX_X' models
+    mc_tracks: 			 true				 # Enable/disable the detection of tracks for 'CUSTOM_BOX_OBJECTS' models 				  
