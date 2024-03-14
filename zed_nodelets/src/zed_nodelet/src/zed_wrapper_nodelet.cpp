@@ -1061,7 +1061,7 @@ void ZEDWrapperNodelet::readMappingParams()
 }
 
 void ZEDWrapperNodelet::readObjDetParams()
-{
+{    
   if (!mDepthDisabled)
   {
     NODELET_INFO_STREAM("*** OBJECT DETECTION PARAMETERS ***");
@@ -1127,6 +1127,10 @@ void ZEDWrapperNodelet::readObjDetParams()
     NODELET_INFO_STREAM(" * Detect fruit and vegetables\t-> " << (mObjDetFruitsEnable ? "ENABLED" : "DISABLED"));
     mNhNs.getParam("object_detection/mc_sport", mObjDetSportEnable);
     NODELET_INFO_STREAM(" * Detect sport-related objects\t-> " << (mObjDetSportEnable ? "ENABLED" : "DISABLED"));
+   //Try to add a different Detector to the Zed-Wrapper 
+    mNhNs.getParam("object_detection/mc_tracks", mObjDetTracksEnable);
+    NODELET_INFO_STREAM(" * Detect track-related objects\t-> " << (mObjDetSTracksEnable ? "ENABLED" : "DISABLED"));
+
   }
 }
 
@@ -2056,6 +2060,11 @@ bool ZEDWrapperNodelet::start_obj_detect()
   if (mObjDetSportEnable)
   {
     mObjDetFilter.push_back(sl::OBJECT_CLASS::SPORT);
+  }
+  // Try to add Tracks into the  model 
+  if (mObjDetTracksEnable)
+  {
+    mObjDetFilter.push_back(sl::OBJECT_CLASS::TRACKS);
   }
 
   sl::ERROR_CODE objDetError = mZed.enableObjectDetection(od_p);
@@ -3201,7 +3210,7 @@ void ZEDWrapperNodelet::pubVideoDepth()
   // Publish the left = rgb GRAY image if someone has subscribed to
   if (leftGraySubnumber > 0)
   {
-    sensor_msgs::ImagePtr leftGrayImgMsg = boost::make_shared<sensor_msgs::Image>();
+    sensor_msgs::ImagePtr leftGrayImgMsg = boost::make_shared<sensor_msgs::Image>();ccb
     publishImage(leftGrayImgMsg, mat_left_gray, mPubLeftGray, mLeftCamInfoMsg, mLeftCamOptFrameId, stamp);
   }
   if (rgbGraySubnumber > 0)
